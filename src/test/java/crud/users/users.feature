@@ -11,3 +11,10 @@ Feature: Petstore User API - CRUD Operations
     When method POST
     Then status 200
     And match response.message == '#notnull'
+
+  Scenario: Get User by Username
+    Given path 'user', 'pruebaUsuarioBien'
+    When method GET
+    Then status 200
+    And match response == read('schemas/user-schema.json')
+    And match response.username == 'pruebaUsuarioBien'
