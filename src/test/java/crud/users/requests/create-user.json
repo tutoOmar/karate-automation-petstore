@@ -1,9 +1,9 @@
 {
-  "id": 18,
-  "username": "pruebaUsuarioBien",
-  "firstName": "omar123",
-  "lastName": "omar12321",
-  "email": "omar12312@omar.com",
+  "id": 0,
+  "username": "#(username)",
+  "firstName": "Omar",
+  "lastName": "Test",
+  "email": "#(email)",
   "password": "omar123",
   "phone": "123456789",
   "userStatus": 0
