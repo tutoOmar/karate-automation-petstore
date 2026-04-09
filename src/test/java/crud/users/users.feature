@@ -39,3 +39,15 @@ Feature: Petstore User API - CRUD Operations
     And match response.username == username
     And match response.firstName == expected.firstName
     And match response.password == expected.password
+
+  Scenario: Delete User
+    Given path 'user', username
+    When method DELETE
+    Then status 200
+    And match response.message == '#notnull'
+
+  Scenario: Validate User Deletion - user not found
+    Given path 'user', username
+    When method GET
+    Then status 404
+    And match response == read('responses/user-not-found.json')
