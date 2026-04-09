@@ -1,0 +1,28 @@
+CONCLUSIONES
+============
+
+1. Happy paths no son suficientes
+   Probar únicamente los flujos exitosos deja sin cobertura casos importantes: datos erróneos,
+   casos borde, valores vacíos o null y campos faltantes. Estos escenarios deben incluirse
+   en cualquier suite de pruebas completa.
+
+2. API Key innecesaria
+   Durante el análisis inicial de la API, la documentación en Swagger sugería que se requería
+   una API Key para consumir los endpoints. Al momento de implementar las pruebas se confirmó
+   que no era necesaria.
+
+3. API pública con datos compartidos
+   Al ser una API pública y compartida, era necesario asegurarse de que cada ejecución generara
+   datos únicos para evitar colisiones con registros creados por otros usuarios. Se implementó
+   un timestamp en el username para garantizar unicidad en cada corrida.
+
+4. Problema con id=0
+   Se identificó un comportamiento inconsistente con id=0. La API acepta este valor sin
+   advertencia, pero al hacer un PUT con id=0 los datos no se actualizaban. Lo mismo ocurría
+   con id=null. Una API bien diseñada debería validar y notificar estos casos de forma explícita.
+
+5. La API no retorna los datos enviados en operaciones de escritura
+   En los endpoints POST y PUT la API solo responde con el status de la operación, sin devolver
+   los datos persistidos. Esto limita la capacidad de validar en las pruebas que los datos
+   realmente fueron guardados correctamente. Sería recomendable que estos endpoints retornen
+   el recurso resultante.
